@@ -1,5 +1,26 @@
 # Trees
 
+## Implementing a Tree
+
+- No helpful Tree data structure in Python's standard library, implement your own.
+- For a binary tree, create a Node class with left and right Node attributes. Make sure to keep track of the “head” Node in your code.
+- For a non-binary tree, use an array or a dictionary for the children. If you don’t expect children with duplicate values and want O(1) lookup, a dictionary might be better.
+
+```
+# Binary Tree Node
+class Node:
+  def __init__(value):
+    self.value = value
+    self.left = None
+    self.right = None
+
+# Non-Binary Tree Node
+class Node:
+  def __init__(value):
+    self.value = value
+    self.children = [] # or self.children = {} for dict
+```
+
 ## Tree Traversal
 
 | Depth first | Breadth first |
