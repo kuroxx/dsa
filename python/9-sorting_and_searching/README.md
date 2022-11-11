@@ -2,10 +2,11 @@
 
 ## Binary search 
 
-| Parameters      | Binary search                  |
-| --------------- | ------------------------------ |
-| Time complexity | O(log n) where n = size(array) |
-| Tricks          | Leftmost Binary Search         |
+| Parameters      | Binary search                             |
+| --------------- | ----------------------------------------- |
+| Time complexity | O(log n) where n = size(array)            |
+| Tricks          | Leftmost Binary Search                    |
+| isValidBST?     | Inorder traversal will be in sorted order |
 
 ## Leftmost Binary Search 
 If the element exists, finds its leftmost index. </br>
