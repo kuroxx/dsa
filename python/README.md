@@ -30,6 +30,47 @@
    - ```[[0 for i in range(5)] for j in range(10)]``` - for 2 or more dimensions. 
    - ```[[0] * 5] * 10``` - DONT DO THIS! (10 rows will just be references to the one row with 5 values so editing 1 row will change the other 9).
 
+### Iteration
+
+6. Enumerate
+   - ```for idx, ele in enumerate(list)``` - to get index and element from an iterable
+7. `do while` in Python
+    - in other languages:
+    ```
+        do {
+            # Write code here
+        } while (condition)
+    ```
+    - in python:
+    ```
+        while True:
+            # Write code here
+            if condition:
+                break
+    ```
+8. Generators
+   - useful when looking up neighbors for a DFS or BFS problem with any graph-type structure
+   - we can create a getNeighbors helper function that returns a generator
+    ```
+        def numIslands(grid) -> int:
+            def getNeighbours(i, j):
+                for di, dj in [(1,0), (-1,0), (0,1), (0, -1)]:
+                    ni, nj = i + di, j +dj
+                    if 0 <= ni < len(grid) and 0 <= nj < len(grid[i]):
+                        yield ni, nj
+            def dfs(i, j):
+                grid[i][j] = "-1"
+                for new_i, new_j in getNeighbour(i, j):
+                    if grid[new_i][new_j] == "1":
+                        dfs(new_i, new_j)
+            islands = 0
+            for i in range(len(grid)):
+                for j in range(len(grid[0])):
+                    if grid[i][j] == "1":
+                        islands += 1
+                        dfs(i, j)
+            return islands
+    ```
 
 ## Study resources
 
