@@ -27,8 +27,8 @@
 5. Creating lists of size N
    - ```list(range(N))``` or ```[*range(N)]``` - use range and convert to list
    - ```[element] * N ``` i.e. ```[0] * 5``` - list of 5 zeroes
-   - ```[[0 for i in range(5)] for j in range(10)]``` - for 2 or more dimensions. 
-   - ```[[0] * 5] * 10``` - DONT DO THIS! (10 rows will just be references to the one row with 5 values so editing 1 row will change the other 9).
+   - ```[[0 for i in range(5)] for j in range(10)]``` - for 2 or more dimensions
+   - ```[[0] * 5] * 10``` - DONT DO THIS! (10 rows will just be references to the one row with 5 values so editing 1 row will change the other 9)
 
 ### Iteration
 
@@ -70,6 +70,74 @@
                         islands += 1
                         dfs(i, j)
             return islands
+    ```
+
+### Higher-order functions
+
+9. List comprehension > `map` or `filter`
+    ```
+    list = list(range(10)) # [0, 1, ..., 9]
+
+    # Not very pythonic
+    evens = filter(lambda x : x % 2 == 0, list) # [0, 2, ..., 8]
+    evens_doubled = map(lambda x : x*2, evens) # [0, 4, ..., 16]
+
+    # Use list comprehensions
+    evens_doubled = [x*2 for x in list if x % 2 == 0]
+    ```
+10. Use reduce with caution
+    - ```functools.reduce(function, iterable[, initializer])``` - syntax
+    - `sum` , `math.prod`, `all`, and `any` are more readable
+    ```
+    from functools import reduce
+    nums = [1, 2, 3, 4, 5]
+    bools = [True, False, True, False, True]
+
+    # sum 
+    reduce(lambda a, b: a + b, nums, 0) # 15
+
+    # math.prod
+    reduce(lambda a, b: a * b, nums, 1) # 120
+
+    # min
+    reduce(lambda a, b: a if a < b else b, nums) # 1
+
+    # max 
+    reduce(lambda a, b: a if a > b else b, nums) # 5
+
+    # any 
+    reduce(lambda a, b: a or b, bools) # true
+
+    # all 
+    reduce(lambda a, b: a and b, bools) # false
+    ```
+11. Using `zip`, `zip_longest`, and `zip_shortest`
+    - ```zip``` - iterates through lists simultaneously (lists of unequal length truncates the output to shortest list)
+    ```
+    list_a = [1, 2, 3, 4]
+    list_b = [10, 20, 30, 40]
+
+    list_sum = [a + b for a, b in zip(list_a, list_b)]
+
+    # OR 
+    list_sum = []
+    for a, b in zip(list_a, list_b):
+        list_sum.append(a + b)
+
+    print(list_sum) # [11, 22, 33, 44]
+    ```
+    - `zip_longest` from `itertools` library lets allows padding smaller list with a `fill_value` to `zip` as if they are equal lengths
+    ```
+    from itertools import zip_longest, zip_shortest
+
+    short = [1, 2]
+    long = [10, 20, 30, 40]
+
+    zip_short = [a + b for a, b in zip(short, long)]
+    print(zip_short) # [11, 22]
+
+    zip_long = [a + b for a, b in zip_longest(short, long, fill_value=0)]
+    print(zip_long) # [11, 22, 30, 40]
     ```
 
 ## Study resources
