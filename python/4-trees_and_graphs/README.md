@@ -23,11 +23,11 @@ class Node:
 
 ## Tree Traversal
 
-| Depth first | Breadth first |
-|---|---|
-| 1. Pre-order  | 1. Level-order | 
-| 2. In-order   | | 
-| 3. Post-order | | 
+| Depth first   | Breadth first  |
+| ------------- | -------------- |
+| 1. Pre-order  | 1. Level-order |
+| 2. In-order   |                |
+| 3. Post-order |                |
 
 ### Depth first
 
@@ -53,13 +53,13 @@ class Node:
 
 ## DFS vs BFS
 
-| Parameters | DFS | BFS |
-|---|---|---|
-| Data structure  | Stack (FIFO) |  Queue (LIFO) | 
-| Backtracking  | Recursive algo that uses the idea of backtracking |  No such concept | 
-| Memory  | Less memory |  More memory |
-| Applications  | Acylic graphs, topological order, etc. | Bipartite graphs, shorted path, etc. |
-| When to use?  | Target is far from source |  Targer is close to source | 
+| Parameters     | DFS                                               | BFS                                  |
+| -------------- | ------------------------------------------------- | ------------------------------------ |
+| Data structure | Stack (FIFO)                                      | Queue (LIFO)                         |
+| Backtracking   | Recursive algo that uses the idea of backtracking | No such concept                      |
+| Memory         | Less memory                                       | More memory                          |
+| Applications   | Acylic graphs, topological order, etc.            | Bipartite graphs, shorted path, etc. |
+| When to use?   | Target is far from source                         | Targer is close to source            |
 
 ## Notes
 
