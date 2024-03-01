@@ -5,35 +5,35 @@
 ### Lists
 
 1. Sorting
-   - ```sorted(list)``` - return sorted in ascending and leave original list unchanged
-   - ```list.sort()``` - sorts and mutates list in-place
-   - ```sorted()``` - uses Timsort, O(n log n) average & worst-case complexity, O(n) space
+   - `sorted(list)` - return sorted in ascending and leave original list unchanged
+   - `list.sort()` - sorts and mutates list in-place
+   - `sorted()` - uses Timsort, O(n log n) average & worst-case complexity, O(n) space
 2. List slicing
-    - ```iterable[start:stop:step]``` - generic syntax
-    - ```list[i:j]``` - return from index i, up to but not including index j
-    - ```list[i:]``` - return from index i, up to end
-    - ```list[:j]``` - return from start, up to index j
-    - ```list[::2]``` - returns every other element from the list (indices: 0,2,4...)
-    - ```list[::-1]``` - reverses the list (although built-in `list.reversed()` is faster, [it returns an iterator object whereas slicing creates an entirely new list via copying each element from original list](https://www.geeksforgeeks.org/python-reversed-vs-1-which-one-is-faster/)).   
+    - `iterable[start:stop:step]` - generic syntax
+    - `list[i:j]` - return from index i, up to but not including index j
+    - `list[i:]` - return from index i, up to end
+    - `list[:j]` - return from start, up to index j
+    - `list[::2]` - returns every other element from the list (indices: 0,2,4...)
+    - `list[::-1]` - reverses the list (although built-in `list.reversed()` is faster, [it returns an iterator object whereas slicing creates an entirely new list via copying each element from original list](https://www.geeksforgeeks.org/python-reversed-vs-1-which-one-is-faster/)).   
 3. List comprehension (i.e. Pythonic map and filter)
-   - ```expression for member in iterable [if conditon]``` - generic syntax
-   - i.e. ```[i * 2 for i in list if i % 2 == 0]``` - returns new list with every even element doubled from original list
+   - `expression for member in iterable [if conditon]` - generic syntax
+   - i.e. `[i * 2 for i in list if i % 2 == 0]` - returns new list with every even element doubled from original list
    - Use this instead of `map` and `filter` for better readability
 4. Range()
-   - ```range(start, stop, step)``` - generic syntax
-   - ```range(n)``` - for an iterable from 0 to n-1
-   - ```range(i,j)``` - for an iterable from i up to but not including j
-   - ```range(0, 10, 2)``` - [need to specify start and stop if you want to use step](https://stackoverflow.com/questions/15875188/the-strange-arguments-of-range)
+   - `range(start, stop, step)` - generic syntax
+   - `range(n)` - for an iterable from 0 to n-1
+   - `range(i,j)` - for an iterable from i up to but not including j
+   - `range(0, 10, 2)` - [need to specify start and stop if you want to use step](https://stackoverflow.com/questions/15875188/the-strange-arguments-of-range)
 5. Creating lists of size N
-   - ```list(range(N))``` or ```[*range(N)]``` - use range and convert to list
-   - ```[element] * N ``` i.e. ```[0] * 5``` - list of 5 zeroes
-   - ```[[0 for i in range(5)] for j in range(10)]``` - for 2 or more dimensions
-   - ```[[0] * 5] * 10``` - DONT DO THIS! (10 rows will just be references to the one row with 5 values so editing 1 row will change the other 9)
+   - `list(range(N))` or `[*range(N)]` - use range and convert to list
+   - `[element] * N ` i.e. `[0] * 5` - list of 5 zeroes
+   - `[[0 for i in range(5)] for j in range(10)]` - for 2 or more dimensions
+   - `[[0] * 5] * 10` - DONT DO THIS! (10 rows will just be references to the one row with 5 values so editing 1 row will change the other 9)
 
 ### Iteration
 
 6. Enumerate
-   - ```for idx, ele in enumerate(list)``` - to get index and element from an iterable
+   - `for idx, ele in enumerate(list)` - to get index and element from an iterable
 7. `do while` in Python
     - in other languages:
     ```
@@ -86,7 +86,7 @@
     evens_doubled = [x*2 for x in list if x % 2 == 0]
     ```
 10. Use reduce with caution
-    - ```functools.reduce(function, iterable[, initializer])``` - syntax
+    - `functools.reduce(function, iterable[, initializer])` - syntax
     - `sum` , `math.prod`, `all`, and `any` are more readable
     ```
     from functools import reduce
@@ -139,6 +139,45 @@
     zip_long = [a + b for a, b in zip_longest(short, long, fill_value=0)]
     print(zip_long) # [11, 22, 30, 40]
     ```
+
+### Data structures
+
+12. Python dictionary methods
+    - `key in my_dict` - check if key is in dict
+    - `my_dict[key]` - access item in dict and returns `keyError` if key isn't in dict
+      - `my_dict.get(key, default_value=None)` - to avoid error and return default val instead
+    - `del my_dict[key]` - remove key from dict if you know key exists
+      - `my_dict.pop(key, None)` - returns None if key is not in my_dict
+    - `my_dict.setdefault(key, default_value)` - returns current val for key if exists in my_dict else default val
+      - `setdefault` - very useful for counting elements i.e. `counts[element] = counts.setfeault(element, 0) + 1`
+    - `my_dict.keys()`, `my_dict.values()`, and `my_dict.items()` - returns a list of keys, values and tuples of (key, value) from my_dict respectively
+    - create new dict using dictionary comprehensions:
+    ```
+    my_baskset = {'apple': 2, 'banana': 3, 'starfruit': 1}
+    double_my_basket = {k:v*2 for (k, v) in my_basket.items()}
+    print(double_my_basket) # {'apple': 4, 'banana': 6, 'starfruit': 2}
+    ```
+    - `|` and `|=` - operators to merge or update keys and values in sets or dictionaries (only available for dict as of Python 3.9)
+    ```
+    a = {1, 2, 3} # New set
+    a += {4} # Returns a 'TypeError'
+    a |= {4} # {1, 2, 3, 4}
+    ```
+13. Using OrderedDict
+    - `OrderedDict` - not used frequently but makes implementing LRU Cache almost trivial
+      - effectively a dictionary combined with a doubly linked-list for ordering
+    - `.popItem()` - remove items in LIFO order 
+      - `.popItem(last=False)` - remove items in FIFO order
+    - `.move_to_end(item_key)` - moves item to end of dict
+      - `.move_to_end(item_key, last=False)` - move item to beginning
+14. Using collections.Counter
+    - `collections.Counter` - is a subclass of `dict` (frequently used in interview questions involving adding counts to a hashmap)
+    ```
+    things = ['a', 'a', 'b', 'c', 'b', 'b']
+    counts = collections.Counter(things)
+    print(counts) # Counter({'b': 3, 'a': 2, 'c': 1})
+    ```
+
 
 ## Study resources
 
