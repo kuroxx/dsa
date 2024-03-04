@@ -1,5 +1,7 @@
 # dsa
 
+![topic-by-roi](./roi.png)
+
 ## References
 - https://github.com/recnac-itna/Algorithm_Templates/blob/master/data_structure/array.py
 - https://github.com/tajpouria/algorithms-and-data-structures-cheat-sheet/tree/master/python3
